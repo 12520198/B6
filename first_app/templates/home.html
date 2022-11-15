@@ -1,0 +1,29 @@
+<!-- product.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    <h1>Welcome To Homepage</h1>
+    <hr>
+  </form>
+  <!-- {{request.user.username}} -->
+  <!-- {{user}} -->
+  {% if user.is_authenticated %}
+      
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+      </li>
+
+  {% else %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">Login</a>
+      </li>
+
+  {% endif %}
+ 
+{% endblock %}

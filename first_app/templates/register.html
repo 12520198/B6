@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+
+{% load crispy_forms_tags %}         
+
+<!--Register--> 
+<div class="container py-5">
+	<h1>Register</h1>
+	<!--  django error message  for invalid crediationals --> 
+	{% if form.errors %}     
+    <div class="alert alert-error">
+      <h4>Please fix the following errors</h4>
+      <ul>
+        {% for field in form %}
+          {% if field.errors %}
+            {% for error in field.errors %}
+              <li><a href="#id_{{ field.name }}" class="error">{{ error|escape }}</a></li>
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+      {% if form.non_field_errors %}
+        {{ form.non_field_errors }}
+      {% endif %}
+    </div>
+  {% endif %}
+  <!-- error message end  -->
+
+	<form method="POST">
+		{% csrf_token %}
+		{{ register_form|crispy }}                    
+		<button class="btn btn-primary" type="submit">Register</button>
+	</form>
+	<p class="text-center">If you already have an account, <a href="{% url 'login' %}">login</a> instead.</p>
+</div>
+
+{% endblock %}

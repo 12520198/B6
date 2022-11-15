@@ -1,2 +1,5 @@
-__pycache__/
-rough.py
+first_app/__pycache__/
+first_app/migrations/__pycache__/
+login_logout/__pycache__/
+
+
